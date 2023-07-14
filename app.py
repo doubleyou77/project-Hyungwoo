@@ -18,6 +18,7 @@ def convert_doc():
 
 @app.route("/")
 def index():
+    print("check")
     return "<h1>check page</h1>"
 
 if __name__ == "__main__":
