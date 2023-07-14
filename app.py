@@ -1,25 +1,25 @@
 from flask import Flask, request, jsonify
-
 from werkzeug.serving import WSGIRequestHandler
+
+from v1.image.cartoongan import cartoongan
 
 app = Flask(__name__)
 
-@app.route("/v1", method = ['POST']) # 경로 api
-def convert_doc():
+@app.route('/v1', methods = ['POST'])
+def convert_cartoon():
     data = request.get_json()
 
     if 'image' not in data:
         return "", 400
-    
-    doc_img_data = data
-    #doc_img_data = () # 이미지 스캔화
 
-    return doc_img_data, 200
+    cartoon_img_data = data
+    # cartoon_img_data = cartoongan.convert(data['image'])
 
-@app.route("/", method = ['GET', 'POST'])
+    return cartoon_img_data, 200
+
+@app.route("/")
 def index():
-    print("check")
-    return "<h1>check page</h1>"
+    return "<h1>Welcome to puzzleleaf ml server !!</h1>"
 
 if __name__ == "__main__":
     # https://stackoverflow.com/questions/63765727/unhandled-exception-connection-closed-while-receiving-data
