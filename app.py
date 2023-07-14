@@ -16,7 +16,7 @@ def convert_doc():
 
     return doc_img_data, 200
 
-@app.route("/")
+@app.route("/", method = ['GET', 'POST'])
 def index():
     print("check")
     return "<h1>check page</h1>"
